@@ -11,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidVeteranVisualNovel"
+        android:screenOrientation="sensorLandscape"
         tools:targetApi="31">
 
-        <activity android:name=".MainAcitvity" android:exported="true">
+        <activity android:name=".MainActivity" android:exported="true" android:configChanges="orientation|screenSize">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER"/>
                 <action android:name="android.intent.action.MAIN"/>

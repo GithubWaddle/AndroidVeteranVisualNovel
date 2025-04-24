@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="title">
+        <item name="android:textSize">54sp</item>
+        <item name="android:fontFamily">@font/unifrakturmaguntia</item>
+    </style>
+    <style name="title.primary">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+    <style name="title.secondary">
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+
+    <style name="body">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="body.primary">
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+    <style name="body.secondary">
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="menu_button" parent="Widget.MaterialComponents.Button">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="menu_button.primary">
+        <item name="android:background">@drawable/rounded_corner_primary</item>
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+    <style name="menu_button.secondary">
+        <item name="android:background">@drawable/rounded_corner_secondary</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+</resources>

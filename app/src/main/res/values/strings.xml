@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Android Veteran Visual Novel</string>
+    <string name="title_menu_title">Visual Novel</string>
+    <string name="title_menu_new_game">New Game</string>
+    <string name="title_menu_load_game">Load Game</string>
+    <string name="title_menu_settings">Settings</string>
+    <string name="pause_menu_title">Pause</string>
 </resources>
