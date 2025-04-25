@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvLabel"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="@string/__placeholder"
+        android:gravity="center"
+        android:layout_weight="1"
+        style="@style/body.primary"
+        />
+    <com.google.android.material.slider.Slider
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:thumbColor="@color/secondary"
+        app:trackColor="@color/gray"
+        android:layout_weight="4"
+        />
+
+</LinearLayout>

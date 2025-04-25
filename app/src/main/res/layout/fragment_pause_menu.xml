@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pause_menu_title"
+                    android:text="Pause"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
@@ -34,28 +34,28 @@
                     android:id="@+id/bContinue"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_menu_new_game"
+                    android:text="Continue"
                     android:layout_marginTop="10dp"
                     style="@style/menu_button.primary" />
                 <Button
                     android:id="@+id/bSave"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_menu_load_game"
+                    android:text="Save"
                     android:layout_marginTop="10dp"
                     style="@style/menu_button.primary" />
                 <Button
                     android:id="@+id/bLoad"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_menu_settings"
+                    android:text="Load"
                     android:layout_marginTop="10dp"
                     style="@style/menu_button.primary" />
                 <Button
                     android:id="@+id/bQuit"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/title_menu_settings"
+                    android:text="Quit"
                     android:layout_marginTop="10dp"
                     style="@style/menu_button.primary" />
 
