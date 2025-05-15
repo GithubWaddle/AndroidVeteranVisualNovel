@@ -1,4 +1,4 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menu;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.R;
 

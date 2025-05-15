@@ -1,11 +1,11 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menu;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.menu;
 
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.OnFragmentInteractionListener;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.OnFragmentInteractionListener;
 
 public class Menu extends Fragment {
     protected OnFragmentInteractionListener mListener;

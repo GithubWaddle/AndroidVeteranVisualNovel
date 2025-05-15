@@ -1,4 +1,4 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,6 +8,8 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.R;
 
 public class DotSwitch extends FrameLayout implements Checkable {
     boolean isChecked = false;

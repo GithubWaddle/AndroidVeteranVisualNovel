@@ -1,4 +1,4 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menu;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.menu;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

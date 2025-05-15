@@ -1,4 +1,4 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold;
 
 import androidx.fragment.app.Fragment;
 

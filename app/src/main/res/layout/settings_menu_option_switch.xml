@@ -14,7 +14,7 @@
         android:gravity="center"
         style="@style/body.primary"
         />
-    <com.androidveteranvisualnovel.AndroidVeteranVisualNovel.DotSwitch
+    <com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.DotSwitch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

@@ -1,11 +1,10 @@
-package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menu;
+package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.utsold.menu;
 
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -15,8 +14,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.R;
-
-import java.util.Objects;
 
 public class PlayingMenu extends Menu {
     boolean isSkipping = false;
