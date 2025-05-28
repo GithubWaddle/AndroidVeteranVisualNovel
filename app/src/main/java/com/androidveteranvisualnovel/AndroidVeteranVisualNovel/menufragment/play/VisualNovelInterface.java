@@ -1,14 +1,12 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play;
 
-import android.graphics.Bitmap;
-
-import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryActor;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
 public interface VisualNovelInterface {
     void setDialogText();
     void typeDialogText(String text, float charactersPerSecond, Runnable finished);
     void setSpeakerName(String text);
-    void setBackground(Bitmap image);
+    void setBackground(String path);
     void setBackgroundTransparencyInstant(float toTransparency);
     void setBackgroundTransparencyTween(
             float toTransparency,
@@ -65,5 +63,36 @@ public interface VisualNovelInterface {
             float toTransparency,
             int milliseconds,
             Runnable finished
+    );
+
+    void playMusic(
+            String path
+    );
+    void playSoundEffect(
+            String path
+    );
+    void stopMusic();
+
+    void setDialogBoxTransparencyInstant(
+            float toTransparency
+    );
+
+    void setDialogBoxTransparencyTween(
+            float toTransparency,
+            int milliseconds,
+            Runnable finished
+    );
+
+    void setSpeakerNameTransparencyInstant(
+            float toTransparency
+    );
+
+    void setTransitionColor(
+            int color
+    );
+
+    void setVariable(
+            String name,
+            Object value
     );
 }

@@ -1,0 +1,11 @@
+{
+	"storyId": "TheTemplateStory",
+	"storyVersion": 1,
+	"apiVersion": "0.0.0",
+	"title": "The Template Story",
+	"author": "Android Veteran Visual Novel",
+	"synopsisTagline": "A template for story creation.",
+	"storyFolderRelativePathToArtCover": "",
+	"storyFolderRelativePathToStartMenuBackgroundMusic": "",
+	"startSceneId": "starting_scene"
+}

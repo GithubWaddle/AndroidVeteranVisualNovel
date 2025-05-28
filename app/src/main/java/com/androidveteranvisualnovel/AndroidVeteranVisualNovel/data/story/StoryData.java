@@ -1,5 +1,7 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.StoryScene;
+
 public class StoryData {
     public String id;
     public String title;

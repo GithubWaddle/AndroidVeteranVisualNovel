@@ -1,6 +1,6 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play;
 
-import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryActor;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
 public class ActorSpriteStage {
 

@@ -1,0 +1,9 @@
+# this is a comment
+set transition color 0 0 0
+set transition transparency 1.0 instant
+
+wait 1000
+set transition transparency 1.0 tween 1000
+
+talk "Hello! This is the starting scene of the Android Veteran Visual Novel Template Story!"
+talk "meow."

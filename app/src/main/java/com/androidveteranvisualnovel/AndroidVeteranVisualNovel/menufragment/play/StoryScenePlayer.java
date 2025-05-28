@@ -2,7 +2,7 @@ package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.pla
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save.SaveData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryData;
-import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryScene;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.StoryScene;
 
 public class StoryScenePlayer {
     enum Status {
