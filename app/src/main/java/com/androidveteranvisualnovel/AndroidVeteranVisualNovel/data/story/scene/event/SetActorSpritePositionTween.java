@@ -19,7 +19,7 @@ public class SetActorSpritePositionTween extends StorySceneEvent {
         super.execute(visualNovel, finished);
 
         visualNovel.setActorSpritePositionTween(
-                LoadedStoryActors.getInstance().get_actor_by_id(actorId),
+                LoadedStoryActors.getInstance().getActorById(actorId),
                 position,
                 milliseconds,
                 finished

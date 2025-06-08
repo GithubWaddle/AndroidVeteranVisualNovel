@@ -17,7 +17,7 @@ public class SetActorSpritePositionInstant extends StorySceneEvent {
         super.execute(visualNovel, finished);
 
         visualNovel.setActorSpritePositionInstant(
-                LoadedStoryActors.getInstance().get_actor_by_id(actorId),
+                LoadedStoryActors.getInstance().getActorById(actorId),
                 position
         );
         finished.run();

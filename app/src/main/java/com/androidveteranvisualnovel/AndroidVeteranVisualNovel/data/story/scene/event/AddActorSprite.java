@@ -17,7 +17,7 @@ public class AddActorSprite extends StorySceneEvent {
         super.execute(visualNovel, finished);
 
         visualNovel.addActorSprite(
-                LoadedStoryActors.getInstance().get_actor_by_id(actorId),
+                LoadedStoryActors.getInstance().getActorById(actorId),
                 expression
         );
         finished.run();

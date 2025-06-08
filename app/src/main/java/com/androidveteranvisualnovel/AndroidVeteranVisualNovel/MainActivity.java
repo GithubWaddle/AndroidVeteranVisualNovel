@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.MenuFragmentManager;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.StartMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
     private MenuFragmentManager menuFragmentManager;
@@ -15,9 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         // layout initialization here
-
         menuFragmentManager = new MenuFragmentManager();
-
-
+        menuFragmentManager.switchToMenuFragment(StartMenuFragment.newInstance());
     }
 }

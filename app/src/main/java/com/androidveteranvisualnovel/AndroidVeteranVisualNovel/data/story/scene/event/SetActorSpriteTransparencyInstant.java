@@ -17,7 +17,7 @@ public class SetActorSpriteTransparencyInstant extends StorySceneEvent {
         super.execute(visualNovel, finished);
 
         visualNovel.setActorSpriteTransparencyInstant(
-                LoadedStoryActors.getInstance().get_actor_by_id(actorId),
+                LoadedStoryActors.getInstance().getActorById(actorId),
                 transparency
         );
         finished.run();

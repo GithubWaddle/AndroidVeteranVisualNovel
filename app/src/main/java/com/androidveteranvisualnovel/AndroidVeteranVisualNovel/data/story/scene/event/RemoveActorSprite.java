@@ -14,7 +14,7 @@ public class RemoveActorSprite extends StorySceneEvent {
     public void execute(VisualNovelInterface visualNovel, Runnable finished) {
         super.execute(visualNovel, finished);
 
-        visualNovel.removeActorSprite(LoadedStoryActors.getInstance().get_actor_by_id(actorId));
+        visualNovel.removeActorSprite(LoadedStoryActors.getInstance().getActorById(actorId));
         finished.run();
     }
 }

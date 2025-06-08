@@ -17,7 +17,7 @@ public class Talk extends StorySceneEvent {
     public void execute(VisualNovelInterface visualNovel, Runnable finished) {
         super.execute(visualNovel, finished);
 
-        visualNovel.setSpeakerName(LoadedStoryActors.getInstance().get_actor_by_id(actor_id).name);
+        visualNovel.setSpeakerName(LoadedStoryActors.getInstance().getActorById(actor_id).name);
         visualNovel.typeDialogText(this.dialog, CHARACTERS_PER_SECOND, () -> visualNovel.waitForContinue(finished));
     }
 }

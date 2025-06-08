@@ -40,19 +40,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StorySceneFileLoader {
-	public StoryScene load(InputStream inputStream) throws IOException {
+	public StoryScene load(String assetPath, Context context) throws IOException {
         StoryScene scene = new StoryScene();
 
-        ArrayList<ArrayList<String>> tokens = tokenize(inputStream);
-        scene.events = compile(tokens);
+        try (InputStream sceneFileStream = context.getAssets().open(assetPath)) {
+            ArrayList<ArrayList<String>> tokens = tokenize(sceneFileStream);
+            scene.events = compile(tokens);
+        }
 
         return scene;
     }
 
-    private static ArrayList<ArrayList<String>> tokenize(InputStream inputStream) throws IOException {
+    private static ArrayList<ArrayList<String>> tokenize(InputStream sceneFileStream) throws IOException {
         ArrayList<ArrayList<String>> tokens = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(sceneFileStream));
         Pattern pattern = Pattern.compile("\"[^\"]*\"|\\S+");
 
         String line;

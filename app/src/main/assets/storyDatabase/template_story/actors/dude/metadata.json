@@ -1,0 +1,8 @@
+{
+  "id": "unique_dude",
+  "name": "Dude",
+  "storyFolderRelativeExpressionImagePaths": {
+    "neutral": "actors/dude/expressions/neutral1.png",
+    "happy": "actors/dude/expressions/happy.png"
+  }
+}

@@ -19,7 +19,7 @@ public class SetActorSpriteExpressionTween extends StorySceneEvent {
         super.execute(visualNovel, finished);
 
         visualNovel.setActorSpriteExpressionTween(
-                LoadedStoryActors.getInstance().get_actor_by_id(actorId),
+                LoadedStoryActors.getInstance().getActorById(actorId),
                 expression,
                 milliseconds,
                 finished
