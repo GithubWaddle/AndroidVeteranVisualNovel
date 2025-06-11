@@ -6,13 +6,14 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
 public class LoadedStoryActors {
     final String METADATA_FILE_NAME = "metadata.json";
     private static LoadedStoryActors instance;
-    private Map<String, StoryActor> actors;
+    private final Map<String, StoryActor> actors = new HashMap<>();
 
     public static LoadedStoryActors getInstance() {
         if (instance == null) {

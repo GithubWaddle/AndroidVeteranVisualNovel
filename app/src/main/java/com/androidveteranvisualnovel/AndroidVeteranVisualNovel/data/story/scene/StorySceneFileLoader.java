@@ -28,6 +28,7 @@ import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.StopMusic;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.StorySceneEvent;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Talk;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Wait;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +41,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class StorySceneFileLoader {
-	public StoryScene load(String assetPath, Context context) throws IOException {
+    static enum TokenizeMode {
+        NORMAL,
+        STRING
+    }
+    static final char TOKEN_SEPERATOR = ' ';
+    static final char STRING_WRAPPER = '"';
+    static final char COMMENT_HEADER = '#';
+	public static StoryScene load(String assetPath, Context context) throws IOException {
         StoryScene scene = new StoryScene();
 
         try (InputStream sceneFileStream = context.getAssets().open(assetPath)) {
@@ -55,17 +63,55 @@ public class StorySceneFileLoader {
         ArrayList<ArrayList<String>> tokens = new ArrayList<>();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(sceneFileStream));
-        Pattern pattern = Pattern.compile("\"[^\"]*\"|\\S+");
-
         String line;
+
+        StringBuilder tokenBuilder = new StringBuilder();
+        TokenizeMode tokenizeMode = TokenizeMode.NORMAL;
+
         while ((line = reader.readLine()) != null) {
+            if (line.isBlank()) {
+                continue;
+            }
             ArrayList<String> tokenLine = new ArrayList<>();
 
-            Matcher matcher = pattern.matcher(line);
-            while (matcher.find()) {
-                tokenLine.add(matcher.group());
+            for (int index = 0; index < line.length(); index++) {
+                char character = line.charAt(index);
+
+                switch (tokenizeMode) {
+                    case NORMAL:
+                        switch (character) {
+                            case TOKEN_SEPERATOR:
+                                tokenLine.add(tokenBuilder.toString());
+                                tokenBuilder.delete(0, tokenBuilder.length());
+                                continue;
+                            case STRING_WRAPPER:
+                                tokenizeMode = TokenizeMode.STRING;
+                                continue;
+                            case COMMENT_HEADER:
+                                index = line.length();
+                                continue;
+                        }
+                        break;
+
+                    case STRING:
+                        if (character == STRING_WRAPPER) {
+                            tokenizeMode = TokenizeMode.NORMAL;
+                            continue;
+                        }
+                        break;
+                }
+
+                tokenBuilder.append(character);
             }
 
+            if (tokenBuilder.length() > 0) {
+                tokenLine.add(tokenBuilder.toString());
+                tokenBuilder.delete(0, tokenBuilder.length());
+            }
+
+            if (tokenLine.size() == 0) {
+                continue;
+            }
             tokens.add(tokenLine);
         }
 
@@ -88,6 +134,8 @@ public class StorySceneFileLoader {
     }
     private static StorySceneEvent compileTokenLine(ArrayList<String> tokenLine) {
         switch (tokenLine.get(0)) {
+            case "wait":
+                return Compile.toWait(tokenLine);
             case "talk":
                 return Compile.talk(tokenLine);
             case "add":
@@ -322,6 +370,11 @@ public class StorySceneFileLoader {
                     actorId,
                     expression
             );
+        }
+
+        public static StorySceneEvent toWait(ArrayList<String> tokenLine) {
+            int milliseconds = Integer.parseInt(tokenLine.get(1));
+            return new Wait(milliseconds);
         }
     }
 }

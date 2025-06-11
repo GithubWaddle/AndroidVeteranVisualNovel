@@ -3,7 +3,7 @@ package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.pla
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
 public interface VisualNovelInterface {
-    void setDialogText();
+    void setDialogText(String text);
     void typeDialogText(String text, float charactersPerSecond, Runnable finished);
     void setSpeakerName(String text);
     void setBackground(String path);
