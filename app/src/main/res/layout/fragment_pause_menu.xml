@@ -1,76 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/pause_menu_sidebar"
-            app:layout_constraintStart_toStartOf="parent">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Pause"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    style="@style/title.secondary"/>
-                <Button
-                    android:id="@+id/bContinue"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Continue"
-                    android:layout_marginTop="10dp"
-                    style="@style/menu_button.primary" />
-                <Button
-                    android:id="@+id/bSave"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:layout_marginTop="10dp"
-                    style="@style/menu_button.primary" />
-                <Button
-                    android:id="@+id/bLoad"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Load"
-                    android:layout_marginTop="10dp"
-                    style="@style/menu_button.primary" />
-                <Button
-                    android:id="@+id/bQuit"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:text="Quit"
-                    android:layout_marginTop="10dp"
-                    style="@style/menu_button.primary" />
+    <Button
+        android:id="@+id/button_to_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue" />
 
-            </LinearLayout>
+    <Button
+        android:id="@+id/button_to_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/pause_menu_blur"
-            app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/button_to_load"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load" />
 
+    <Button
+        android:id="@+id/button_to_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings" />
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/button_exit_to_selection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit to Story Selection" />
+</LinearLayout>

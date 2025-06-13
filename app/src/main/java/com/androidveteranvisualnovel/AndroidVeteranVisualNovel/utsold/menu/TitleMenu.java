@@ -15,7 +15,7 @@ public class TitleMenu extends Menu {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_title_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_old_title_menu, container, false);
 
         // bind buttons
         Button bNewGame = view.findViewById(R.id.bNewGame);

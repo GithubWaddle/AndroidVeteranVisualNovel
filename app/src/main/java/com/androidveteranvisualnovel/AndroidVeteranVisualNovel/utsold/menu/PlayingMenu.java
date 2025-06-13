@@ -23,7 +23,7 @@ public class PlayingMenu extends Menu {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_playing_section, container, false);
+        View view = inflater.inflate(R.layout.fragment_old_playing_section, container, false);
 
         // binding buttons
         ImageButton ibPauseButton = view.findViewById(R.id.ibPauseButton);

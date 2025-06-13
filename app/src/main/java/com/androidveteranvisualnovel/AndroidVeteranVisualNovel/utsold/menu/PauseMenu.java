@@ -15,7 +15,7 @@ public class PauseMenu extends Menu {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pause_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_old_pause_menu, container, false);
 
         // binding buttons
         Button bContinue = view.findViewById(R.id.bContinue);

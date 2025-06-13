@@ -21,7 +21,7 @@ public class LoadMenu extends Menu {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_load_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_old_load_menu, container, false);
 
         // binding buttons
         ImageButton ibBack = view.findViewById(R.id.ibBack);

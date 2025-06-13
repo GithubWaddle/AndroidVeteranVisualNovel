@@ -9,14 +9,13 @@ import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.Menu
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.StartMenuFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private MenuFragmentManager menuFragmentManager;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         // layout initialization here
-        menuFragmentManager = new MenuFragmentManager();
+        MenuFragmentManager menuFragmentManager = new MenuFragmentManager(getSupportFragmentManager(), R.id.frame_container);
         menuFragmentManager.switchToMenuFragment(StartMenuFragment.newInstance());
     }
 }
