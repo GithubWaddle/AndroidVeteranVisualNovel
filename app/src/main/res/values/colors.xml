@@ -2,5 +2,8 @@
 <resources>
     <color name="primary">#FF000000</color>
     <color name="secondary">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="purple">#232B45</color>
+    <color name="lavender">#CDC9FC</color>
     <color name="gray">#474747</color>
 </resources>

@@ -2,12 +2,15 @@
 <resources>
     <style name="title">
         <item name="android:textSize">54sp</item>
-        <item name="android:fontFamily">@font/unifrakturmaguntia</item>
+        <item name="android:fontFamily">@font/fleurdeleah</item>
     </style>
     <style name="title.primary">
         <item name="android:textColor">@color/primary</item>
     </style>
     <style name="title.secondary">
+        <item name="android:textColor">@color/secondary</item>
+    </style>
+    <style name="title.story">
         <item name="android:textColor">@color/secondary</item>
     </style>
 

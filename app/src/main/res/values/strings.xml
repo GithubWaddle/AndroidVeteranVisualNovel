@@ -4,6 +4,13 @@
     <string name="title_menu_new_game">New Game</string>
     <string name="title_menu_load_game">Load Game</string>
     <string name="title_menu_settings">Settings</string>
+    <string name="title_story">Title of The Story</string>
     <string name="pause_menu_title">Pause</string>
     <string name="__placeholder">PLACEHOLDER</string>
+    <string name="back">Back</string>
+    <string name="setting">Settings</string>
+    <string name="sinopsis">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem</string>
+    <string name="story_synopsis">By Author</string>
+    <string name="button_detail">Play Now</string>
+    <string name="btn_description">Button</string>
 </resources>

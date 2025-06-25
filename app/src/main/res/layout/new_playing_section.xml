@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="500dp"
+        android:layout_height="620dp"
+        android:scaleType="centerCrop"
+        android:translationY="180dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/oc1_char1" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDialogBox"
+        android:layout_width="600dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/rounded_corner_primary"
+            app:tint="#E6000000" />
+
+        <TextView
+            android:id="@+id/tvDialogBox"
+            style="@style/body.primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:text='"What are you doing?"'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clDialogActorName"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/clDialogBox"
+        app:layout_constraintStart_toStartOf="@+id/clDialogBox">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rounded_corner_gray" />
+
+        <TextView
+            android:id="@+id/tvDialogActorName"
+            style="@style/body.primary"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="Arte"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/ibPauseButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/image_button_border"
+            android:src="@drawable/pause" />
+
+        <ImageButton
+            android:id="@+id/ibSkipButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/image_button_border"
+            android:src="@drawable/fast_forward_filled" />
+
+        <ImageButton
+            android:id="@+id/ibSettingsButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/image_button_border"
+            android:src="@drawable/settingblack"/>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
