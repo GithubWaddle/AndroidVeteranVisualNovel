@@ -13,6 +13,7 @@ import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.R;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save.SaveData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.MenuFragment;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.SettingsMenuFragment;
 
 public class PlayFragment extends MenuFragment implements VisualNovelInterface {
     StoryScenePlayer storyScenePlayer;
@@ -43,8 +44,11 @@ public class PlayFragment extends MenuFragment implements VisualNovelInterface {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_play, container, false);
 
-        view.findViewById(R.id.button_pause).setOnClickListener(v ->
+        view.findViewById(R.id.bPause).setOnClickListener(v ->
                 menuFragmentManager.overlayToMenuFragment(new PauseMenuFragment())
+        );
+        view.findViewById(R.id.bSettings).setOnClickListener(v ->
+                menuFragmentManager.overlayToMenuFragment(new SettingsMenuFragment())
         );
 
         return view;

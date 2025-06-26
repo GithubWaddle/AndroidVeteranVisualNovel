@@ -1,12 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/button_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_margin="16dp"
-        android:text="Pause" />
-</FrameLayout>
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/gray"
+        android:elevation="0dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clActorSpriteStage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="1dp"
+        >
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clUserInterface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="2dp">
+        <RelativeLayout
+            android:id="@+id/rlButtonsBar"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toTopOf="@id/rlDialogPanel"
+            app:layout_constraintEnd_toEndOf="@id/rlDialogPanel"
+            >
+            <ImageView
+                android:id="@+id/ivButtonsBarBackground"
+                android:src="@color/black"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+            <LinearLayout
+                android:id="@+id/llButtons"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                >
+                <ImageButton
+                    android:id="@+id/bPause"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"/>
+                <ImageButton
+                    android:id="@+id/bSettings"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@android:color/white"
+                    />
+                <!-- SKIP NOT IMPLEMENTED -->
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlSpeakerBar"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            app:layout_constraintBottom_toTopOf="@id/rlDialogPanel"
+            app:layout_constraintStart_toStartOf="@id/rlDialogPanel"
+            >
+            <ImageView
+                android:id="@+id/ivSpeakerBarBackground"
+                android:src="@color/black"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:textColor="@android:color/white"
+                android:text="@string/__placeholder"
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlDialogPanel"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            >
+            <ImageView
+                android:id="@+id/ivDialogPanelBackground"
+                android:src="@color/black"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+
+            <TextView
+                android:id="@+id/tvDialogText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:text="@string/__placeholder"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/ivTransition"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@android:color/transparent"
+        android:elevation="4dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

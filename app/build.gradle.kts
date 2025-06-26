@@ -35,10 +35,10 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.material)
-    implementation(libs.gson)
     testImplementation(libs.junit)
     testImplementation(libs.ext.junit)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation("org.awaitility:awaitility:3.1.6")
 }

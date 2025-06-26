@@ -27,6 +27,8 @@ public class CommandLineVisualNovel implements VisualNovelInterface {
     @Override
     public void typeDialogText(String text, float charactersPerSecond, Runnable finished) {
         print(String.format("\"%s\"(typed)", text));
+        ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.schedule(finished, (int) (text.length() / charactersPerSecond), TimeUnit.MILLISECONDS);
     }
 
     @Override
@@ -112,6 +114,7 @@ public class CommandLineVisualNovel implements VisualNovelInterface {
     @Override
     public void waitForContinue(Runnable finished) {
         print(">>>");
+        finished.run();
     }
 
     @Override

@@ -11,35 +11,41 @@ public class StoryDatabase {
     private static final String STORY_DATABASE_ASSET_PATH = "storyDatabase";
     private static StoryDatabase instance;
 
-    private Context context;
-    private ArrayList<StoryData> allStories = new ArrayList<>();
-    private Map<String, StoryData> storyDataMap = new HashMap<>();
+    private final Context applicationContext;
+    private final Map<String, StoryData> allStories = new HashMap<>();
     private boolean isLoaded = false;
 
     private StoryDatabase(Context context) {
-        this.context = context.getApplicationContext();
+        this.applicationContext = context.getApplicationContext();
     }
 
-    public static StoryDatabase getInstance(Context context) {
+    public static synchronized StoryDatabase getInstance() {
+        return getInstance(null);
+    }
+
+
+    public static synchronized StoryDatabase getInstance(Context context) {
         if (instance == null) {
             instance = new StoryDatabase(context);
         }
         return instance;
     }
-    
-    // Load semua cerita dari folder assets/storyDatabase
+
     private void loadStoriesIfNeeded() {
         if (isLoaded) return;
 
         try {
-            AssetManager assetManager = context.getAssets();
-            String[] folders = assetManager.list(STORY_DATABASE_ASSET_PATH);
+            AssetManager assetManager = applicationContext.getAssets();
+            String[] storyFolders = assetManager.list(STORY_DATABASE_ASSET_PATH);
 
-            if (folders != null) {
-                for (String folderName : folders) {
-                    StoryData data = new StoryData(context, folderName);
-                    allStories.add(data);
-                    storyDataMap.put(data.id, data);
+            if (storyFolders != null) {
+                for (String folderName : storyFolders) {
+                    String fullAssetPath = STORY_DATABASE_ASSET_PATH + "/" + folderName;
+
+                    StoryData storyData = StoryDataFolderLoader.load(fullAssetPath, applicationContext);
+                    if (storyData != null && storyData.id != null) {
+                        allStories.put(storyData.id, storyData);
+                    }
                 }
             }
 
@@ -50,15 +56,14 @@ public class StoryDatabase {
         }
     }
 
-    // Return semua story yang ada
-    public ArrayList<StoryData> getAllStories() {
+    public Map<String, StoryData> getAllStories() {
         loadStoriesIfNeeded();
         return allStories;
     }
 
-    // Return story tertentu berdasarkan ID
     public StoryData getStoryById(String id) {
         loadStoriesIfNeeded();
-        return storyDataMap.get(id);
+        return allStories.get(id);
     }
 }
+

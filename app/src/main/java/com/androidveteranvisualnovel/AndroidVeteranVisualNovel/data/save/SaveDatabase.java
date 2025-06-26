@@ -2,8 +2,7 @@ package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save;
 
 import android.content.Context;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.json.JSONException;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,99 +10,79 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SaveDatabase {
+    private static final String SAVE_DIRECTORY_NAME = "saves";
+    private static SaveDatabase singletonInstance;
+    private final Context applicationContext;
 
-    private static SaveDatabase instance;
-    private final File baseFolder;
-    private final Gson gson;
+    private SaveDatabase(Context applicationContext) {
+        this.applicationContext = applicationContext.getApplicationContext();
 
-    private SaveDatabase(Context context) {
-        this.baseFolder = new File(context.getFilesDir(), "SaveDatabase");
-        if (!baseFolder.exists()) baseFolder.mkdirs();
-        this.gson = new GsonBuilder().setPrettyPrinting().create();
+        File saveRootDirectory = new File(applicationContext.getFilesDir(), SAVE_DIRECTORY_NAME);
+        if (!saveRootDirectory.exists()) {
+            saveRootDirectory.mkdirs();
+        }
+    }
+
+    public static synchronized SaveDatabase getInstance() {
+        return getInstance(null);
     }
 
     public static synchronized SaveDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = new SaveDatabase(context.getApplicationContext());
+        if (singletonInstance == null) {
+            singletonInstance = new SaveDatabase(context);
         }
-        return instance;
+        return singletonInstance;
     }
 
     public ArrayList<SaveData> getAllSavesOfStory(String storyId) {
-        ArrayList<SaveData> saves = new ArrayList<>();
-        File storyFolder = new File(baseFolder, storyId);
-        if (storyFolder.exists() && storyFolder.isDirectory()) {
-            File[] files = storyFolder.listFiles((dir, name) -> name.matches("save_\\d+\\.json"));
-            if (files != null) {
-                for (File file : files) {
-                    SaveData data = loadSaveDataFromFile(file);
-                    if (data != null) saves.add(data);
-                }
+        ArrayList<SaveData> saveDataList = new ArrayList<>();
+        File[] saveFiles = getStorySaveFolder(storyId).listFiles();
+
+        if (saveFiles == null) return saveDataList;
+
+        for (File saveFile : saveFiles) {
+            if (saveFile.isFile()) {
+                saveDataList.add(SaveDataFormatConverter.toObject(saveFile, applicationContext));
             }
         }
-        return saves;
+
+        return saveDataList;
     }
 
-    public int createSave(String storyId) {
-        int newId = generateNextId(storyId);
-        SaveData newSave = new SaveData();
-        newSave.storyId = storyId;
-        newSave.lineNumber = 0;
-        newSave.sceneId = "";
-        newSave.storyState = null;
-        updateSave(storyId, newId, newSave);
-        return newId;
+    public void createSave(String storyId, int saveId, SaveData saveData) {
+        File storySaveFolder = getStorySaveFolder(storyId);
+        File saveFile = new File(storySaveFolder, saveId + ".json");
+
+        SaveDataFormatConverter.toFile(saveData, saveFile.getAbsolutePath(), applicationContext);
     }
 
     public SaveData getSave(String storyId, int saveId) {
-        File file = getSaveFile(storyId, saveId);
-        return loadSaveDataFromFile(file);
+        File saveFile = new File(getStorySaveFolder(storyId), saveId + ".json");
+        if (!saveFile.exists()) return null;
+
+        return SaveDataFormatConverter.toObject(saveFile, applicationContext);
     }
 
-    public void updateSave(String storyId, int saveId, SaveData saveData) {
-        File file = getSaveFile(storyId, saveId);
-        file.getParentFile().mkdirs();
-        try (var writer = new java.io.FileWriter(file)) {
-            gson.toJson(saveData, writer);
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void updateSave(String storyId, int saveId, SaveData updatedSaveData) {
+        File saveFile = new File(getStorySaveFolder(storyId), saveId + ".json");
+        if (saveFile.exists()) {
+            SaveDataFormatConverter.toFile(updatedSaveData, saveFile.getAbsolutePath(), applicationContext);
         }
     }
 
     public void deleteSave(String storyId, int saveId) {
-        File file = getSaveFile(storyId, saveId);
-        if (file.exists()) file.delete();
-    }
-
-    // Util methods
-    private File getSaveFile(String storyId, int saveId) {
-        return new File(new File(baseFolder, storyId), "save_" + saveId + ".json");
-    }
-
-    private SaveData loadSaveDataFromFile(File file) {
-        try (var reader = new java.io.FileReader(file)) {
-            return gson.fromJson(reader, SaveData.class);
-        } catch (Exception e) {
-            return null;
+        File saveFile = new File(getStorySaveFolder(storyId), saveId + ".json");
+        if (saveFile.exists()) {
+            saveFile.delete();
         }
     }
 
-    private int generateNextId(String storyId) {
-        File storyFolder = new File(baseFolder, storyId);
-        int maxId = 0;
-        if (storyFolder.exists() && storyFolder.isDirectory()) {
-            File[] files = storyFolder.listFiles();
-            if (files != null) {
-                Pattern pattern = Pattern.compile("save_(\\d+)\\.json");
-                for (File file : files) {
-                    Matcher matcher = pattern.matcher(file.getName());
-                    if (matcher.matches()) {
-                        int id = Integer.parseInt(matcher.group(1));
-                        if (id > maxId) maxId = id;
-                    }
-                }
-            }
+    private File getStorySaveFolder(String storyId) {
+        File storyDirectory = new File(applicationContext.getFilesDir(), SAVE_DIRECTORY_NAME + "/" + storyId);
+        if (!storyDirectory.exists()) {
+            storyDirectory.mkdirs();
         }
-        return maxId + 1;
+        return storyDirectory;
     }
+
 }

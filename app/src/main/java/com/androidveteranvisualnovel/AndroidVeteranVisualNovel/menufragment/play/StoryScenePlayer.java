@@ -5,8 +5,13 @@ import android.util.Log;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save.SaveData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryDatabase;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.LoadedStoryActors;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.StoryScene;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.StorySceneEvent;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 
 public class StoryScenePlayer {
     final String TAG = "StoryScenePlayer";
@@ -18,7 +23,7 @@ public class StoryScenePlayer {
     private StoryData storyData;
     public StoryScene storyScene; // temporarily made public to unit test StoryScenePlayer (because StoryDatabase is not implemented yet)
     private VisualNovelInterface visualNovelInterface;
-    private Status currentStatus = Status.STOP;
+    public Status currentStatus = Status.STOP;
 
     private int currentEventIndex = 0;
 
@@ -26,10 +31,11 @@ public class StoryScenePlayer {
         this.visualNovelInterface = visualNovelInterface;
     }
 
-    public void load(SaveData toSaveData) {
+    public void load(SaveData toSaveData) throws IOException, JSONException {
         this.saveData = toSaveData;
         this.storyData = StoryDatabase.getInstance().getStoryById(toSaveData.storyId);
         this.storyScene = this.storyData.getSceneById(toSaveData.sceneId);
+        LoadedStoryActors.getInstance().loadFolder(this.storyData.getActorsFolderAssetPath());
     }
 
     public void play() {

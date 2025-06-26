@@ -23,14 +23,14 @@ public class LoadedStoryActorsUnitTest {
         final String ACTOR_FOLDER_ASSET_PATH = "storyDatabase/template_story/actors";
         final String ACTOR_ID = "unique_dude";
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        LoadedStoryActors loadedStoryActors = LoadedStoryActors.getInstance();
+        LoadedStoryActors loadedStoryActors = LoadedStoryActors.getInstance(appContext);
 
         Log.println(
                 DEBUG,
                 TAG,
                 "LoadedStoryActorsUnitTest: Loading actor folder from path `" + ACTOR_FOLDER_ASSET_PATH + "`!"
         );
-        loadedStoryActors.loadFolder(ACTOR_FOLDER_ASSET_PATH, appContext);
+        loadedStoryActors.loadFolder(ACTOR_FOLDER_ASSET_PATH);
 
         Log.println(
                 DEBUG,
