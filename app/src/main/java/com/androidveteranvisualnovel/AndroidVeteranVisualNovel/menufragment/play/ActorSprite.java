@@ -1,7 +1,9 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play;
 
+import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
 import android.content.Context;
@@ -16,35 +18,30 @@ public class ActorSprite {
     ImageView actorSprite;
     private StoryActor actor;
     private Context context;
+    private StoryData storyData;
 
-    public ActorSprite(Context context, ImageView actorSprite, StoryActor actor, String expression) {
+    public ActorSprite(Context context, ImageView actorSprite, StoryData storyData, StoryActor actor, String expression) {
         this.context = context;
         this.actorSprite = actorSprite;
+        this.storyData = storyData;
         this.actor = actor;
         setExpression(expression);
     }
 
     public void setExpression(String expression) {
-        String assetPath = actor.expressionPaths.get(expression);
-        if (assetPath == null) {
+        String storyPath = actor.expressionPaths.get(expression);
+        if (storyPath == null) {
             return;
         }
 
-        Bitmap bitmap = loadBitmapFromAssets(assetPath);
-        if (bitmap == null) {
-            actorSprite.setImageResource(android.R.drawable.ic_delete); // Placeholder
-            return;
-        }
-
-        actorSprite.setImageBitmap(bitmap);
-    }
-
-    private Bitmap loadBitmapFromAssets(String assetPath) {
-        try (InputStream is = context.getAssets().open(assetPath)) {
-            return BitmapFactory.decodeStream(is);
+        try {
+            InputStream inputStream = context.getAssets().open(
+                    storyData.storyDataAssetPath + "/" + storyPath
+            );
+            Drawable drawable = Drawable.createFromStream(inputStream, null);
+            actorSprite.setImageDrawable(drawable);
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
     }
 }

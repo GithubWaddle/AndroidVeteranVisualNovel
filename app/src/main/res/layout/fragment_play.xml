@@ -2,65 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#000000"
+    >
 
     <ImageView
         android:id="@+id/ivBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@color/gray"
+        android:src="#000000"
         android:elevation="0dp"
+        android:scaleType="centerCrop"
         />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:id="@+id/clActorSpriteStage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="1dp"
         >
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clUserInterface"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:elevation="2dp">
-        <RelativeLayout
-            android:id="@+id/rlButtonsBar"
-            android:layout_width="120dp"
-            android:layout_height="48dp"
-            app:layout_constraintBottom_toTopOf="@id/rlDialogPanel"
-            app:layout_constraintEnd_toEndOf="@id/rlDialogPanel"
-            >
-            <ImageView
-                android:id="@+id/ivButtonsBarBackground"
-                android:src="@color/black"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
-            <LinearLayout
-                android:id="@+id/llButtons"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_margin="5dp"
-                >
-                <ImageButton
-                    android:id="@+id/bPause"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/white"/>
-                <ImageButton
-                    android:id="@+id/bSettings"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:src="@android:color/white"
-                    />
-                <!-- SKIP NOT IMPLEMENTED -->
-            </LinearLayout>
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rlSpeakerBar"
@@ -74,13 +42,14 @@
                 android:src="@color/black"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"/>
+
             <TextView
+                android:id="@+id/tvSpeakerName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
-                android:textColor="@android:color/white"
-                android:text="@string/__placeholder"
-                />
+                android:gravity="center"
+                android:textColor="@android:color/white" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -103,9 +72,101 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:text="@string/__placeholder"
+                android:padding="5dp"
                 android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/vTouchDetector"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+           />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rlChoice"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="48dp"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/bChoice1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Choice 1"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@android:color/white"
+                    />
+                <Button
+                    android:id="@+id/bChoice2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Choice 2"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@android:color/white"
+                    android:layout_marginStart="10dp"
+                    />
+                <Button
+                    android:id="@+id/bChoice3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Choice 3"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="@android:color/white"
+                    />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlButtonsBar"
+            android:layout_width="120dp"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toTopOf="@id/rlDialogPanel"
+            app:layout_constraintEnd_toEndOf="@id/rlDialogPanel"
+            >
+            <ImageView
+                android:id="@+id/ivButtonsBarBackground"
+                android:src="@color/black"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+            <LinearLayout
+                android:id="@+id/llButtons"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                >
+                <ImageButton
+                    android:id="@+id/bPause"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/pause"
+                    app:tint="#FFFFFF"
+                    android:background="#00000000"
+                    />
+                <ImageButton
+                    android:id="@+id/bSettings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/settings"
+                    android:background="#00000000"
+                    android:layout_marginStart="5dp"
+                    />
+                <!-- SKIP NOT IMPLEMENTED -->
+            </LinearLayout>
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

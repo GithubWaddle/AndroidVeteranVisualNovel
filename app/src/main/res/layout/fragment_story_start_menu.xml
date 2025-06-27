@@ -1,17 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:gravity="center">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:gravity="center">
 
-    <Button
-        android:id="@+id/button_to_play"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Story" />
+    <View
+        android:id="@+id/vBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        />
 
-    <Button
-        android:id="@+id/button_to_settings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Settings" />
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llContent"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        >
+        <LinearLayout
+            android:id="@+id/llContentLeft"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="4"
+            android:paddingEnd="16dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/llSettingsAndTitle"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                >
+                <ImageButton
+                    android:id="@+id/bSettings"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/settings"
+                    app:tint="#000000"
+                    android:background="#00000000"
+                    />
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/__placeholder"
+                    android:textSize="32sp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/black"
+                    />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:background="#000000"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <ImageButton
+                    android:id="@+id/bStorySelection"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/left"
+                    android:background="#00000000"
+                    app:tint="#000000"
+                    />
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/__placeholder"
+                    android:textSize="24sp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llContentRight"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/__placeholder"
+                android:textSize="16sp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/llButtons"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="4"
+                >
+                <Button
+                    android:id="@+id/bContinue"
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:text="Continue"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+                <Button
+                    android:id="@+id/bNewGame"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="New Game"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toTopOf="@id/bContinue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    />
+                <Button
+                    android:id="@+id/bLoad"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:text="Load Game"
+                    app:layout_constraintBottom_toTopOf="@id/bNewGame"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginBottom="16dp"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

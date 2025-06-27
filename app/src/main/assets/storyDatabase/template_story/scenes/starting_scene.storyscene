@@ -3,7 +3,35 @@ set transition color 0 0 0
 set transition transparency 1.0 instant
 
 wait 1000 # inline comment
-set transition transparency 1.0 tween 1000
+set transition transparency 0.0 tween 1000
 
-talk unique_dude "Hello! This is the starting scene of the Android Veteran Visual Novel Template Story!"
+talk unique_dude "Hello! This is the starting scene of the The School Reports Template Story!"
+talk unique_dude "You wanna hear me meow?"
+
+choice "Yes" YES "NO!" NO
+
+label YES
 talk unique_dude "meow."
+jump ENDING
+
+label NO
+talk unique_dude ":("
+
+label ENDING
+talk unique_dude "That's it for me."
+
+add actorSprite lommie neutral center
+set actorSprite lommie transparency 1.0 tween 1000
+talk lommie "And time for me!!"
+talk lommie "I will be demonstrating movement!"
+
+
+set actorSprite lommie position left tween 1000
+talk lommie "Left!"
+
+set actorSprite lommie position right tween 2000
+talk lommie "Right!!"
+
+set actorSprite lommie position center tween 1000
+talk lommie "Back again!!"
+talk lommie "Oh yeah!!!"

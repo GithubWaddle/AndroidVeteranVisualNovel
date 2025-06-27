@@ -1,0 +1,7 @@
+{
+  "id": "lommie",
+  "name": "Lommie",
+  "storyFolderRelativeExpressionImagePaths": {
+    "neutral": "actors/lommie/expressions/neutral.png"
+  }
+}

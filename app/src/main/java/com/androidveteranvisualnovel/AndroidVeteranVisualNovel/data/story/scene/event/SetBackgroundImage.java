@@ -1,19 +1,20 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.StoryScenePlayer;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.VisualNovelInterface;
 
 public class SetBackgroundImage extends StorySceneEvent {
-    private String path;
+    private String storyPath;
 
-    public SetBackgroundImage(String path) {
-        this.path = path;
+    public SetBackgroundImage(String storyPath) {
+        this.storyPath = storyPath;
     }
 
     @Override
-    public void execute(VisualNovelInterface visualNovel, Runnable finished) {
-        super.execute(visualNovel, finished);
+    public void execute(VisualNovelInterface visualNovel, StoryScenePlayer storyScenePlayer, Runnable finished) {
+        super.execute(visualNovel, storyScenePlayer, finished);
 
-        visualNovel.setBackground(path);
+        visualNovel.setBackground(storyPath);
         finished.run();
     }
 }

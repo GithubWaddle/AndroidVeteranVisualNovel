@@ -1,11 +1,12 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.LoadedStoryActors;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.StoryScenePlayer;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.VisualNovelInterface;
 
 public class SetActorSpriteExpressionInstant extends StorySceneEvent {
-    private String actorId;
-    private String expression;
+    public String actorId;
+    public String expression;
 
     public SetActorSpriteExpressionInstant(String actorId, String expression) {
         this.actorId = actorId;
@@ -13,8 +14,8 @@ public class SetActorSpriteExpressionInstant extends StorySceneEvent {
     }
 
     @Override
-    public void execute(VisualNovelInterface visualNovel, Runnable finished) {
-        super.execute(visualNovel, finished);
+    public void execute(VisualNovelInterface visualNovel, StoryScenePlayer storyScenePlayer, Runnable finished) {
+        super.execute(visualNovel, storyScenePlayer, finished);
 
         visualNovel.setActorSpriteExpressionInstant(
                 LoadedStoryActors.getInstance().getActorById(actorId),

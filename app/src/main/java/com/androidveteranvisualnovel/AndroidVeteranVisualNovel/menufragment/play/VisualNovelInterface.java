@@ -2,18 +2,20 @@ package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.pla
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
+import java.util.List;
+
 public interface VisualNovelInterface {
     void setDialogText(String text);
     void typeDialogText(String text, float charactersPerSecond, Runnable finished);
     void setSpeakerName(String text);
-    void setBackground(String path);
+    void setBackground(String storyPath);
     void setBackgroundTransparencyInstant(float toTransparency);
     void setBackgroundTransparencyTween(
             float toTransparency,
             int milliseconds,
             Runnable finished
     );
-    void addActorSprite(StoryActor actor, String expression);
+    void addActorSprite(StoryActor actor, String expression, String position);
     void setActorSpriteTransparencyInstant(
             StoryActor actor,
             float toTransparency
@@ -66,7 +68,7 @@ public interface VisualNovelInterface {
     );
 
     void playMusic(
-            String path
+            String storyPath
     );
     void playSoundEffect(
             String path
@@ -91,8 +93,6 @@ public interface VisualNovelInterface {
             int color
     );
 
-    void setVariable(
-            String name,
-            Object value
-    );
+    void askChoice(List<String> choices, Runnable finished);
+    String getPickedChoice();
 }

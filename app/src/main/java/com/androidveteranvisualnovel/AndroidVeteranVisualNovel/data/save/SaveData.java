@@ -1,5 +1,7 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.Nullable;
 
 import java.util.Map;
@@ -10,6 +12,8 @@ public class SaveData {
     public String sceneId;
     public Integer lineNumber;
     public Map<String, Object> storyState;
+
+    public Bitmap thumbnail;
 
     public SaveData() {}
 

@@ -45,4 +45,19 @@ public class DialogBox {
 
         handler.post(characterAdder[0]);
     }
+
+    public void setTransparencyInstant(float toTransparency) {
+        dialogPanel.setAlpha(toTransparency);
+    }
+
+    public void setTransparencyTween(float toTransparency, int milliseconds, Runnable finished) {
+        new Handler(Looper.getMainLooper()).post(() -> {
+            dialogPanel.setVisibility(View.VISIBLE);
+            dialogPanel.animate()
+                    .alpha(toTransparency)
+                    .setDuration(milliseconds)
+                    .withEndAction(finished)
+                    .start();
+        });
+    }
 }

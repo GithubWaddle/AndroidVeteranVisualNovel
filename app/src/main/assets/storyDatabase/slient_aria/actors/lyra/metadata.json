@@ -1,0 +1,7 @@
+{
+  "id": "lyra",
+  "name": "Lyra",
+  "storyFolderRelativeExpressionImagePaths": {
+    "neutral": "actors/lyra/expressions/neutral.png"
+  }
+}

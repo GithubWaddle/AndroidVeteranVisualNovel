@@ -1,0 +1,409 @@
+label CHAPTER_1
+set transition color 0 0 0
+set transition transparency 1.0 instant
+
+set background image asset/image/classroom.jpg
+
+wait 1000
+set transition transparency 0.0 tween 3000
+
+talk narrator "I am an ordinary guy minding their own business as a highschooler. I go up a grade, and my class composition gets scrambled. Everyone is replaced with strangers I've only seen in passing glances."
+talk narrator "The class chatters as everyone gets to know each other. A girl who sits next to me does the same; this time to me."
+
+add actorSprite lommie neutral center
+set actorSprite lommie transparency 1.0 tween 1000
+talk lommie "Hi! I've never seen you before!"
+talk lommie "I'm Lommie!!"
+
+talk narrator "She extends an arm out decorated with green bracelets, matching her vibrant long green hair which looks well brushed. Her grin is tall; her teeth sharp. "
+talk narrator "I introduced myself to her."
+
+set actorSprite lommie position right tween 500
+talk lommie "Me??"
+talk lommie "I'm partial to a little dirty beat making."
+
+set actorSprite lommie position center tween 500
+talk lommie "Look! I'm making one right now on my phone!!"
+
+set actorSprite lommie position left tween 500
+talk lommie "The UI sucks, which makes sense given DAWs were primarily made on computers back in the day."
+
+set actorSprite lommie position center tween 500
+talk lommie "...But the music doesn't!!"
+talk lommie "Wanna give a listen?"
+talk you "...sure."
+
+talk narrator "I listen to the dirty beat with the large white headphones she had on her neck."
+
+talk you "...This sucks."
+talk lommie "Yeah!!"
+talk you "..."
+talk you "Why is there a moaning sound...?"
+talk lommie "Yeah!!"
+
+talk narrator "The teacher comes in and class starts."
+
+set transition transparency 1.0 tween 1000
+set actorSprite lommie transparency 0.0 instant
+set background image asset/image/classroom.jpg
+set transition transparency 0.0 tween 1000
+
+talk narrator "Days passed. My usual school day routine remains the same even with the different class composition. There is only one change though: her."
+
+set actorSprite lommie transparency 1.0 tween 1000
+
+talk lommie "So, like, I punched him in the face when he insulted my cool bracelets."
+talk you "Did you really have to punch him?"
+talk lommie "Action is a representation of who we are. And I… am a noble cool girl."
+talk lommie "I am also in trouble for putting that guy in the hospital."
+
+set transition transparency 1.0 tween 1000
+set actorSprite lommie transparency 0.0 instant
+set background image asset/image/school_outside.jpg
+set transition transparency 0.0 tween 1000
+
+talk narrator "She's...odd."
+talk narrator "But she's oddly fun to talk to. Any topic."
+
+set actorSprite lommie transparency 1.0 tween 1000
+
+talk you "Dogs or cats?"
+talk lommie "...I like s-quir-elles."
+talk you "That's how you say squirrels?"
+talk lommie "I'm not bothered to say it correctly!!"
+
+talk narrator "She's great, honestly."
+talk narrator "Though, there is something I can't shake off from her."
+
+set background transparency 0.0 tween 1000
+talk narrator "That stare."
+talk narrator "I only caught it once or twice in my time with her. Whenever I wasn't looking...she would just...look at me. Unending gaze. Piercing eyes."
+talk narrator "Maybe that's just one of her oddities."
+talk narrator "Maybe."
+
+set transition transparency 1.0 tween 1000
+
+set actorSprite lommie transparency 0.0 instant
+set background image asset/image/classroom.jpg
+set background transparency 1.0 instant
+
+set transition transparency 0.0 tween 1000
+
+label CHAPTER_2
+talk narrator "Another school day comes by. I sit semi-sleepy on my desk."
+talk narrator "Lommie said something about schools starting way to early to accomodate for the neurological development of teenagers." 
+talk narrator "She's right, but I'm too sleepy to think straight."
+
+set actorSprite lommie transparency 1.0 instant
+talk lommie "Boo!"
+
+talk narrator "Lommie pierces my side and I jump up."
+talk narrator "She giggles. Her smile as tall as ever. We spitball as usual before class starts." 
+talk narrator "Just before the teacher came in, she gets quieter than usual."
+
+set actorSprite lommie position right tween 500
+talk lommie "So, uhm."
+
+set actorSprite lommie position right tween 1000
+talk lommie "I was thinking..."
+
+set actorSprite lommie position center tween 2000
+talk lommie "Do you, wanna come over to my place later?"
+talk you "Why?"
+
+set actorSprite lommie transparency 0.0 tween 2000
+talk lommie "I..."
+
+talk narrator "She spheres her fingers with eachother; unusually looking away from me."
+
+talk lommie "I...wanted to show you something."
+talk narrator "I chuckle."
+talk you "...another dirty beat?"
+
+talk narrator "She chuckles too, albeit in a higher pitch than usual."
+
+choice "Say yes" FIRST_CHOICE "Say no" SECOND_CHOICE
+
+label FIRST_CHOICE
+talk you "Yeah, sure."
+
+wait 3000
+set actorSprite lommie transparency 1.0 instant
+wait 3000
+
+talk narrator "That bright smile returns."
+talk lommie "YES!"
+
+talk narrator "Heads turn to Lommie. That was louder than either of us expected."
+talk narrator "Her eyes are wide as her joints are stiffened straight. Her shoulders eating up her neck."
+
+talk you "I-I'll see you."
+
+set transition transparency 1.0 tween 1000
+jump CHAPTER_3
+
+label SECOND_CHOICE
+talk narrator "A sharp air cuts into her teeth. Her movement pauses. Her eyes dig into mine. They're glossy now."
+talk narrator "Her smile is strained. D-Did, did I say the wrong thing?"
+
+talk you "Are you...okay, Lommie?"
+
+talk narrator "She blinks before stumbling into herself."
+
+set actorSprite lommie transparency 1.0 tween 1000
+talk lommie "Fine!"
+talk you "I can come at another time, I'm just busy-"
+talk lommie "It's okay!"
+
+talk narrator "The teacher walks in."
+
+talk lommie "Let's continue..."
+talk lommie "...with our lives."
+
+set transition transparency 1.0 tween 1000
+set actorSprite lommie transparency 0.0 instant
+remove actorSprite lommie
+set background image asset/image/school_outside.jpg
+set transition transparency 0.0 tween 1000
+
+talk narrator "Days past. It's different again."
+talk narrator "Lommie and I still talk, but...she's distant. So distant that I never saw her again after graduation."
+talk narrator "What happened to her? What'd I do? Who knows. All I know is that I was friends with a girl called Lommie."
+talk narrator "If only for a moment."
+talk narrator "END: AVOIDED"
+jump END
+
+label CHAPTER_3
+set transition transparency 1.0 instant
+wait 1000
+
+set actorSprite lommie transparency 1.0 instant
+set background image asset/image/lommie_room.jpg
+set background transparency 1.0 instant
+
+set transition transparency 0.0 tween 1000
+
+talk lommie "Here's...my room!"
+
+talk narrator "It's...unnatural."
+talk narrator "It looks neat on the surface yet I'm pretty sure this is not the state it's usually in."
+talk narrator "The closet with sleeves of clothes leaking out its edges tells me so."
+
+talk lommie "Anyways! Sit! Make yourself comfortable!!"
+
+talk narrator "Lommie points to her bedside. I follow and sit. She brings me a bowl of tortilla chips."
+talk narrator "I instictively take one."
+
+talk you "Is roasted corn the only flavour of these chips?"
+
+talk narrator "I see Lommie's fingers twitch at the sides of the bowl."
+
+talk lommie "I-It's the best one!"
+
+talk narrator "She tries to feign her wide smile."
+talk narrator "I can't say much. Neither can she."
+
+talk you "...Lommie."
+talk you "...Are you hiding something?"
+
+wait 1000
+set actorSprite lommie transparency 0.0 tween 2000
+talk narrator "Lommie hugs the bowl closer to her. Peering into it with an interest that I haven't seen from her."
+
+talk lommie "I..."
+talk lommie "I don't know how to say it..."
+talk lommie "But..."
+
+talk narrator "Her smile is small. Her eyes watered, reflecting the soft glow of her computer monitor."
+talk narrator "I gaze into them. It's like watching a stars be born in real time."
+
+talk lommie "...Do you like me?"
+
+choice "Say yes" FIRST_CHOICE2 "Say no" SECOND_CHOICE2
+
+label FIRST_CHOICE2
+talk you "Yes..I do..."
+talk narrator "I get tackled."
+talk narrator "A high pitch ringing covers my sense of hearing entirely."
+
+set transition color 255 255 255
+set transition transparency 1.0 tween 4000
+
+jump CHAPTER_6
+
+label SECOND_CHOICE2
+talk you "I-I'm sorry, Lommie."
+
+wait 1000
+set actorSprite lommie transparency 1.0 tween 1000
+talk narrator "She bites her bottom lip. Her eyes fixed on my completely."
+talk you "It's not that I don't like you, I do but..."
+
+talk narrator "My throat is dry."
+talk narrator "Her smile stays. Yet, her once brilliant eyes turn dark."
+talk narrator "Her pupils, a sharp dot surrounded by walls of green."
+
+set background transparency 0.1 instant
+talk narrator "I think I'm sweating? I'm unsure. I can't think."
+
+set background transparency 0.3 instant
+talk narrator "Something creeps to cover my senses. My ears ring. My muscles loosen."
+
+set background transparency 0.5 instant
+talk narrator "The room around Lommie turns dark."
+
+set background transparency 0.7 instant
+talk narrator "I can't think to breath."
+
+set background transparency 0.9 instant
+talk narrator "She smirks."
+talk narrator "I fall into darkness."
+
+set background transparency 1.0 tween 2000
+jump CHAPTER_4
+
+label CHAPTER_4
+set transition transparency 1.0 instant
+
+wait 1000
+set actorSprite lommie transparency 1.0 instant
+set background image asset/image/basement.jpg
+
+set transition transparency 0.0 tween 1000
+
+talk narrator "I find myself sprawled on the floor, my chin making scraped contact on the concrete floor below."
+talk narrator "My body feels heavy, every muscle feels like it had been glued to the ground; even breathing is hard."
+talk narrator "I look up."
+
+set actorSprite lommie transparency 1.0 tween 5000
+talk narrator "Fuck."
+talk narrator "She snaps her fingers to a beat."
+talk narrator "The ground below me glows an ethereal green."
+talk narrator "Dots of chalk dust float up slowly. She still stares at me with those deep black pupils."
+talk narrator "A soft smile creeped to her cheeks."
+talk narrator "What is wrong with her?!"
+
+choice "Ask her why" FIRST_CHOICE3 "Plead for escape" SECOND_CHOICE3 "Struggle" THIRD_CHOICE "Accept it." FOURTH_CHOICE
+
+label FIRST_CHOICE3
+talk you "Why are you doing this?"
+talk lommie "You're all I want."
+talk lommie "I thought I was all you wanted too."
+talk lommie "I'll make sure that comes true now."
+talk lommie "I'll MAKE you perfect."
+talk lommie "You have to love ME."
+talk lommie "Like I love you."
+jump CONNECTOR_BAD
+
+label SECOND_CHOICE3
+talk you "Please...please just let me go. Why do I deserve this? What did I do wrong?"
+talk you "Please, please let me go, Lommie."
+talk lommie "I can't let you go anymore."
+talk lommie "You're just...almost perfect."
+talk lommie "I'll make you whole."
+jump CONNECTOR_BAD
+
+label THIRD_CHOICE
+talk you "..."
+talk lommie "You're not gonna say anything...?"
+talk lommie "...Okay."
+jump CONNECTOR_BAD
+
+label FOURTH_CHOICE
+talk narrator "I flex every fiber of my muscles. I have to get out of this situation no matter what."
+talk narrator "Whatever she is, whatever state I'm in."
+talk narrator "I am NOT getting bewitched today."
+talk narrator "I begin pushing myself up, my arms jittering at even the slightest force. It doesn't matter! Push!"
+talk narrator "The sigils below me glow a bright green. I stand crooked, my knees begging me to fall."
+talk narrator "I stare down my assailant like cornered prey. She stands backing away a little; her fingers still casting a rhythm."
+talk narrator "I see the frame of light behind her, boxing her own frame. She's in the way of the door."
+talk narrator "She notices it too."
+talk narrator "Now or never."
+
+set actorSprite lommie transparency 0.0 tween 1000
+talk narrator "I lunge forward. I feel my feet skid as I recklessly run like a bull. Lommie tries to dodge, yet she puts herself still."
+talk narrator "That soft smile cutting her face as it transforms to become familiar yet out place." 
+talk narrator "I land with my shoulder, pushing Lommie away from the door."
+talk narrator "My hands nick the door handle, slipping a little before getting a solid grasp."
+talk narrator "I feel a pain surging in my side. I look; it's her."
+
+set actorSprite lommie transparency 1.0 instant
+talk lommie "Don't...go!"
+
+talk narrator "My head grows cold as my side is warm as a sauna. Blood."
+talk narrator "Resist."
+
+set actorSprite lommie transparency 0.0 instant
+talk narrator "I grab onto the knife handle lodged in my side and struggle to push Lommie's hands away."
+talk narrator "I can feel the metal scraping the under side of my ribs."
+talk narrator "The room turns an odd green. Sparks originate from the particles chalk in the air. "
+talk narrator "Sparks turn into flashes, flashes turn into lightning. It vaporizes."
+talk narrator "I swing and strike Lommie's wrists against the metal door lock. She winces and backs off."
+talk narrator "I ran up."
+talk narrator "White light basks my vision as I make my way up. The door behind me creaks."
+
+talk lommie "I WON'T LET YOU GO!"
+
+talk narrator "No, she wouldn't."
+talk narrator "I rush back down the stairs."
+
+set actorSprite lommie transparency 1.0 instant
+talk narrator "She’s there, her foot just on the base of the stairs. The sparks of wicked green light burst around her frame."
+talk narrator "Now or never."
+talk narrator "I lunge my leg forward and kick her chest. She tries to catch herself on the grip of the door, but she falls."
+talk narrator "I reach for the door handle and pull. The last thing I see is Lommie’s face."
+
+set actorSprite lommie transparency 0.0 tween 3000
+talk narrator "No smile, no teeth."
+talk narrator "I close the door."
+talk narrator "Green."
+
+set transition color 0 255 0
+set transition transparency 1.0 tween 1000
+
+jump CHAPTER_5
+
+label CONNECTOR_BAD
+talk narrator "Tall smile."
+talk narrator "Sharp teeth"
+talk narrator "Green."
+
+label CHAPTER_5
+
+wait 3000
+
+set transition transparency 0.0 instant
+talk narrator "It’s quiet."
+talk narrator "Dust mites fall from the ceiling, illuminated by the hanging light above."
+talk narrator "My hand is shaking as it holds onto the doorknob. My legs feel like they’re about to snap by the ankles."
+talk narrator "I turn my head and point my ear to the door, my eyes fixated on something I couldn’t see"
+talk narrator "Is she still there?"
+talk narrator "I wait for a response."
+talk narrator "..."
+talk narrator "I can’t tell."
+talk narrator "My ears are hearing everything. My heartbeat, my breathing, the sound of water flowing in the pipes behind the walls."
+talk narrator "It smells sharply cold."
+talk narrator "My hands are still shaking on the doorknob."
+talk narrator "I opened it."
+talk narrator "..."
+talk narrator "..."
+talk narrator "..?"
+
+set actorSprite lommie transparency 1.0 tween 5000
+talk narrator "Shit."
+talk narrator "END: LOMMIE"
+
+label CHAPTER_6
+set background image asset/image/classroom.jpg
+wait 1000
+set transition transparency 0.0 tween 3000
+
+talk narrator "Class starts as usual."
+talk narrator "I've been with Lommie for a while now. She's still as bright as ever, though, she scares me sometimes."
+talk narrator "There's just something I just can’t explain..."
+talk narrator "Well...it's not a problem I guess."
+talk narrator "She's Lommie."
+talk narrator "I love her as is."
+talk narrator "END: Together"
+
+label END

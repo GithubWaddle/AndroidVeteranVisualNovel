@@ -3,10 +3,14 @@ package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.pla
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.StoryData;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
 import java.util.HashMap;
@@ -16,24 +20,34 @@ public class ActorSpriteStage {
     private final Context context;
     private final FrameLayout stageLayout;
     private final Map<StoryActor, ActorSprite> actorMap = new HashMap<>();
+    private final StoryData storyData;
 
-    public ActorSpriteStage(Context context, FrameLayout stageLayout) {
+    public ActorSpriteStage(Context context, FrameLayout stageLayout, StoryData storyData) {
         this.context = context;
         this.stageLayout = stageLayout;
+        this.storyData = storyData;
     }
 
-    public void addActor(StoryActor actor) {
+    public void addActor(StoryActor actor, String expression, String position) {
         if (actorMap.containsKey(actor)) return;
 
         ImageView imageView = new ImageView(context);
-        imageView.setLayoutParams(new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT
-        ));
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        imageView.setLayoutParams(params);
+        imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
+        imageView.setAlpha(0.0f);
         stageLayout.addView(imageView);
 
-        ActorSprite sprite = new ActorSprite(context, imageView, actor, "default");
+        ActorSprite sprite = new ActorSprite(context, imageView, storyData, actor, expression);
         actorMap.put(actor, sprite);
+
+        setActorPositionInstant(actor, position);
     }
 
     public void removeActor(StoryActor actor) {
@@ -46,71 +60,74 @@ public class ActorSpriteStage {
 
     public void setActorTransparencyInstant(StoryActor actor, float toTransparency) {
         ActorSprite sprite = actorMap.get(actor);
-        if (sprite != null) {
-            sprite.actorSprite.setAlpha(toTransparency);
-            sprite.actorSprite.setVisibility(toTransparency == 0f ? View.GONE : View.VISIBLE);
+        if (sprite == null) {
+            return;
         }
+
+        sprite.actorSprite.setAlpha(toTransparency);
+        sprite.actorSprite.setVisibility(toTransparency == 0f ? View.GONE : View.VISIBLE);
     }
 
     public void setActorTransparencyTween(StoryActor actor, float toTransparency, int milliseconds, Runnable finished) {
         ActorSprite sprite = actorMap.get(actor);
-        if (sprite != null) {
-            sprite.actorSprite.setVisibility(View.VISIBLE);
-            ObjectAnimator animator = ObjectAnimator.ofFloat(sprite.actorSprite, "alpha", sprite.actorSprite.getAlpha(), toTransparency);
-            animator.setDuration(milliseconds);
-            animator.addListener(new Animator.AnimatorListener() {
-                public void onAnimationEnd(Animator animator) {
-                    if (toTransparency == 0f) {
-                        sprite.actorSprite.setVisibility(View.GONE);
-                    }
-                    if (finished != null) finished.run();
-                }
-                public void onAnimationStart(Animator animator) {}
-                public void onAnimationCancel(Animator animator) {}
-                public void onAnimationRepeat(Animator animator) {}
-            });
-            animator.start();
+        if (sprite == null) {
+            return;
         }
+        new Handler(Looper.getMainLooper()).post(() -> {
+            sprite.actorSprite.setVisibility(View.VISIBLE);
+            sprite.actorSprite.animate()
+                    .alpha(toTransparency)
+                    .setDuration(milliseconds)
+                    .withEndAction(finished)
+                    .start();
+        });
     }
 
     public void setActorPositionInstant(StoryActor actor, int x, int y) {
         ActorSprite sprite = actorMap.get(actor);
-        if (sprite != null) {
-            sprite.actorSprite.setX(x);
-            sprite.actorSprite.setY(y);
+        if (sprite == null) {
+            return;
         }
+        sprite.actorSprite.setX(x);
+        sprite.actorSprite.setY(y);
     }
 
     public void setActorPositionInstant(StoryActor actor, String toPosition) {
-        int[] xy = resolvePosition(toPosition);
-        setActorPositionInstant(actor, xy[0], xy[1]);
+        ActorSprite sprite = actorMap.get(actor);
+        if (sprite == null) {
+            return;
+        }
+        
+        int[] xyLocal = getLocalNudgePosition(toPosition, sprite.actorSprite);
+        setActorPositionInstant(actor, xyLocal[0], xyLocal[1]);
     }
 
     public void setActorPositionTween(StoryActor actor, int x, int y, int milliseconds, Runnable finished) {
         ActorSprite sprite = actorMap.get(actor);
-        if (sprite != null) {
-            ObjectAnimator animX = ObjectAnimator.ofFloat(sprite.actorSprite, "x", sprite.actorSprite.getX(), x);
-            ObjectAnimator animY = ObjectAnimator.ofFloat(sprite.actorSprite, "y", sprite.actorSprite.getY(), y);
-            animX.setDuration(milliseconds);
-            animY.setDuration(milliseconds);
-
-            animY.addListener(new Animator.AnimatorListener() {
-                public void onAnimationEnd(Animator animator) {
-                    if (finished != null) finished.run();
-                }
-                public void onAnimationStart(Animator animator) {}
-                public void onAnimationCancel(Animator animator) {}
-                public void onAnimationRepeat(Animator animator) {}
-            });
-
-            animX.start();
-            animY.start();
+        if (sprite == null) {
+            return;
         }
+        new Handler(Looper.getMainLooper()).post(() -> {
+            sprite.actorSprite.animate()
+                    .translationX(x)
+                    .setDuration(milliseconds)
+                    .start();
+            sprite.actorSprite.animate()
+                    .translationY(y)
+                    .setDuration(milliseconds)
+                    .withEndAction(finished)
+                    .start();
+        });
     }
 
     public void setActorPositionTween(StoryActor actor, String toPosition, int milliseconds, Runnable finished) {
-        int[] xy = resolvePosition(toPosition);
-        setActorPositionTween(actor, xy[0], xy[1], milliseconds, finished);
+        ActorSprite sprite = actorMap.get(actor);
+        if (sprite == null) {
+            return;
+        }
+
+        int[] xyLocal = getLocalNudgePosition(toPosition, sprite.actorSprite);
+        setActorPositionTween(actor, xyLocal[0], xyLocal[1], milliseconds, finished);
     }
 
     public void setActorExpressionInstant(StoryActor actor, String expression) {
@@ -122,8 +139,10 @@ public class ActorSpriteStage {
 
     public void setActorExpressionTween(StoryActor actor, String expression, int milliseconds, Runnable finished) {
         ActorSprite sprite = actorMap.get(actor);
-        if (sprite != null) {
-            // Optional: crossfade or placeholder for tweening expression change
+        if (sprite == null) {
+            return;
+        }
+        new Handler(Looper.getMainLooper()).post(() -> {
             sprite.actorSprite.animate()
                     .alpha(0f)
                     .setDuration(milliseconds / 2)
@@ -135,26 +154,43 @@ public class ActorSpriteStage {
                                 .withEndAction(finished)
                                 .start();
                     }).start();
-        }
+        });
     }
 
-    private int[] resolvePosition(String keyword) {
-        int x = 0;
-        int y = stageLayout.getHeight() / 2; // default Y center
 
+    private int[] getLocalNudgePosition(String keyword, View view) {
+        int stageSizeX = stageLayout.getWidth();
+        int stageSizeY = stageLayout.getHeight();
+        int viewSizeX = view.getWidth();
+        int viewSizeY = view.getHeight();
+
+        if (stageSizeX == 0 || stageSizeY == 0 || viewSizeX == 0 || viewSizeY == 0) {
+            return new int[]{0, 0};
+        }
+
+        int viewRelativeX = view.getLeft();
+        int viewRelativeY = view.getTop();
+        int[] stageAbsolutePosition = new int[2];
+        stageLayout.getLocationOnScreen(stageAbsolutePosition);
+
+        int xAbsoluteNudge;
         switch (keyword.toLowerCase()) {
             case "left":
-                x = (int)(stageLayout.getWidth() * 0.1);
-                break;
-            case "center":
-                x = (int)(stageLayout.getWidth() * 0.5);
+                xAbsoluteNudge = (int)(stageSizeX * 0.2);
                 break;
             case "right":
-                x = (int)(stageLayout.getWidth() * 0.9);
+                xAbsoluteNudge = (int)(stageSizeX * 0.8);
                 break;
+            case "center":
             default:
-                x = (int)(stageLayout.getWidth() * 0.5);
+                xAbsoluteNudge = (int)(stageSizeX * 0.5);
+                break;
         }
-        return new int[] {x, y};
+
+        int xLocal = -viewRelativeX + xAbsoluteNudge - (viewSizeX / 2);
+        int yLocal = -viewRelativeY + (stageSizeY - viewSizeY);
+
+        return new int[]{xLocal, yLocal};
     }
 }
+

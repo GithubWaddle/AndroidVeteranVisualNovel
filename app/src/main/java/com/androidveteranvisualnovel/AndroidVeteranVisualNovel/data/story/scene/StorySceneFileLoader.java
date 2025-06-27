@@ -5,6 +5,10 @@ import android.graphics.Color;
 import android.util.Log;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.AddActorSprite;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Choice;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.If;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Jump;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Label;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.PlayMusic;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.PlaySoundEffect;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.RemoveActorSprite;
@@ -27,6 +31,7 @@ import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.SetVariable;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.StopMusic;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.StorySceneEvent;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Switch;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Talk;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event.Wait;
 
@@ -35,6 +40,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -134,6 +142,16 @@ public class StorySceneFileLoader {
     }
     private static StorySceneEvent compileTokenLine(ArrayList<String> tokenLine) {
         switch (tokenLine.get(0)) {
+            case "switch":
+                return Compile.toSwitch(tokenLine);
+            case "if":
+                return Compile.toIf(tokenLine);
+            case "choice":
+                return Compile.choice(tokenLine);
+            case "jump":
+                return Compile.jump(tokenLine);
+            case "label":
+                return Compile.label(tokenLine);
             case "wait":
                 return Compile.toWait(tokenLine);
             case "talk":
@@ -198,7 +216,7 @@ public class StorySceneFileLoader {
                         }
                         break;
                     case "actorSprite":
-                        switch (tokenLine.get(2)) {
+                        switch (tokenLine.get(3)) {
                             case "transparency":
                                 return Compile.setActorSpriteTransparency(tokenLine);
                             case "position":
@@ -299,7 +317,8 @@ public class StorySceneFileLoader {
         public static StorySceneEvent addActorSprite(ArrayList<String> tokenLine) {
             return new AddActorSprite(
                     tokenLine.get(2),
-                    tokenLine.get(3)
+                    tokenLine.get(3),
+                    tokenLine.get(4)
             );
         }
 
@@ -375,6 +394,55 @@ public class StorySceneFileLoader {
         public static StorySceneEvent toWait(ArrayList<String> tokenLine) {
             int milliseconds = Integer.parseInt(tokenLine.get(1));
             return new Wait(milliseconds);
+        }
+
+        public static StorySceneEvent toSwitch(ArrayList<String> tokenLine) {
+            return new Switch(tokenLine.get(1));
+        }
+
+        public static StorySceneEvent toIf(ArrayList<String> tokenLine) {
+            String operand1 = tokenLine.get(1);
+            String operator = tokenLine.get(2);
+            String operand2 = tokenLine.get(3);
+            String jumpLabel = tokenLine.get(4);
+            return new If(
+                    operand1,
+                    operator,
+                    operand2,
+                    jumpLabel
+            );
+        }
+
+        public static StorySceneEvent choice(ArrayList<String> tokenLine) {
+            Map<String, String> choiceToLabel = new HashMap<>();
+            choiceToLabel.put(
+                    tokenLine.get(1),
+                    tokenLine.get(2)
+            );
+            if (tokenLine.size() > 3) {
+                choiceToLabel.put(
+                        tokenLine.get(3),
+                        tokenLine.get(4)
+                );
+            }
+
+            if (tokenLine.size() > 5) {
+                choiceToLabel.put(
+                        tokenLine.get(5),
+                        tokenLine.get(6)
+                );
+            }
+            return new Choice(
+                    choiceToLabel
+            );
+        }
+
+        public static StorySceneEvent jump(ArrayList<String> tokenLine) {
+            return new Jump(tokenLine.get(1));
+        }
+
+        public static StorySceneEvent label(ArrayList<String> tokenLine) {
+            return new Label(tokenLine.get(1));
         }
     }
 }

@@ -1,0 +1,118 @@
+label SILENT_ARIA
+set transition color 0 0 0
+set transition transparency 1.0 instant
+
+set background image asset/image/music_room.png
+
+set transition transparency 0.0 tween 1000
+
+talk narrator "The sunlight filters through dusty windows, casting a golden hue across the empty music stands."
+talk narrator "A soft piano melody echoes across the room."
+talk narrator "Lyra walks in quietly, drawn by the sound."
+
+add actorSprite lyra neutral right
+set actorSprite lyra transparency 1.0 tween 1000
+talk lyra "You're still here."
+
+set actorSprite lyra position right tween 1000
+
+add actorSprite edgar neutral left
+set actorSprite edgar transparency 1.0 tween 2000
+set actorSprite edgar position left tween 1000
+talk narrator "Surprised, Edgar glances over his shoulder. He sees Lyra standing near the door."
+
+talk edgar "You always say that like it’s a bad thing."
+talk lyra "I didn’t mean it that way. I just… thought I’d be alone."
+talk edgar "Sigh, It’s easier to think when no one’s listening."
+talk lyra "But I am listening."
+
+talk narrator "Lyra steps closer to him. He pauses, fingers still hovering above the keys."
+
+set actorSprite lyra position left tween 1000
+talk edgar "You’re not like the others, are you?"
+
+talk narrator "She sits beside him."
+
+talk lyra "I’m not trying to fix you. I just... hear things."
+talk edgar "Voices?"
+talk lyra "Memories."
+
+talk narrator "A beat of sileence. The atmosphere thickens."
+
+talk edgar "So, what do you hear when I play?"
+talk lyra "Pain. Fear. And a song you never finished."
+talk edgar "You shouldn' hear that. That song wasn't meant for anyone else."
+talk lyra "I can help you finish it. But only if you let me sing with you."
+talk edgar "What happens if I do?"
+talk lyra "Then we both remember what we've tried to forget."
+
+talk narrator "A long pause. Then Edgar nods slowly."
+
+talk edgar "Alright. One note at a time."
+
+talk narrator "They begin to sing. As their voices blend, memories begin to surface."
+
+set background transparency 1.0 tween 2000
+talk narrator "The choir room seems to fade around them."
+talk narrator "Flashes of the past appear—Lyra as a child, standing alone on a stage; Edgar collapsing during a performance, clutching his chest; a mysterious voice whispering from the shadows."
+talk narrator "Lyra stop singing suddenly, her eyes wide with realization."
+
+talk lyra "That voice… It was me. I was there when it happened."
+talk edgar "You—?"
+talk lyra "I erased your memory. To protect you."
+talk edgar "Why would you do that?"
+talk lyra "Because if you remembered, you’d hate me. I thought it was the only way to save you."
+
+talk narrator "Edgar steps closer to Lyra."
+
+talk edgar "Then let me decide. Let me remember everything. Even if it hurts."
+
+choice "Erase his memories again" ERASE_MEMORY "Let the truth remains" SHOW_TRUTH
+
+label ERASE_MEMORY
+talk narrator "Protect him from the pain, even if it means losing him forever"
+talk narrator "Lyra gently places her hand over Edgar’s forehead."
+talk narrator "A soft note escapes her lips—a fading lullaby that wraps around his thoughts like mist."
+talk narrator "Edgar’s eyes slowly glaze over. He smiles faintly."
+
+set background transparency 1.0 tween 1000
+talk edgar "What were you talking about?"
+
+talk narrator "A forces smile left Lyra's face."
+
+set actorSprite lyra position right tween 1000
+talk lyra "Nothing important."
+
+set transition transparency 1.0 tween 1000
+
+set actorSprite edgar transparency 0.0 instant
+set actorSprite lyra transparency 0.0 instant
+set background transparency 1.0 instant
+
+set transition transparency 0.0 tween 1000
+
+talk narrator "The next day, Edgar returns to the choir room, playing piano alone again."
+talk narrator "He sings now—but the connection, the emotion—it’s hollow."
+talk narrator "Lyra watches from afar, silent. She never sings again"
+talk narrator "The melody survives. But the memory is gone"
+talk narrator "Ending: Silent Goodbye"
+jump END
+
+label SHOW_TRUTH
+talk narrator "Face the consequences. Heal together—or fall apart."
+talk narrator "Lyra lowers her hand. Her voice trembles, but she keeps singing."
+talk narrator "Edgar joins her, their duet turning into a storm of memory and sound."
+talk narrator "Tears fall."
+
+talk edgar "I..I remember now,"
+talk edgar "Everything. You saved me... and lost yourself."
+talk lyra “And now we save each other.”
+
+talk narrator "Together, they compose a new piece—“Silent Aria.”"
+talk narrator "They perform it at Nationals. The audience is breathless."
+talk narrator "Their voices, fragile but brave, echo long after the last note fades"
+talk narrator "The Echo is gone. The silence is broken."
+talk narrator "And they are finally free."
+talk narrator "Ending: Final Harmony"
+
+label END

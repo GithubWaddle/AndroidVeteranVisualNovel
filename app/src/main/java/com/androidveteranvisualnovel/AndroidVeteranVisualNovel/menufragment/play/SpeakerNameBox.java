@@ -12,4 +12,8 @@ public class SpeakerNameBox {
     public void setName(String name) {
         speakerNameText.setText(name);
     }
+
+    public void setTransparencyInstant(float toTransparency) {
+
+    }
 }

@@ -1,6 +1,10 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play;
 
+import android.animation.AnimatorListenerAdapter;
+import android.os.Looper;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
+import android.os.Handler;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
@@ -23,7 +27,7 @@ public class PlayTransition {
 
     public void setTransparencyInstant(float toTransparency) {
         transitionPanel.setAlpha(toTransparency);
-        transitionPanel.setVisibility(toTransparency == 0 ? View.GONE : View.VISIBLE);
+        //transitionPanel.setVisibility(toTransparency == 0 ? View.GONE : View.VISIBLE);
     }
 
     public void setTransparencyTween(
@@ -31,27 +35,13 @@ public class PlayTransition {
             int milliseconds,
             Runnable finished
     ) {
-        transitionPanel.setVisibility(View.VISIBLE);
-        ObjectAnimator animator = ObjectAnimator.ofFloat(transitionPanel, View.ALPHA, transitionPanel.getAlpha(), toTransparency);
-        animator.setDuration(milliseconds);
-
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override public void onAnimationStart(android.animation.Animator animation) {}
-            @Override public void onAnimationCancel(android.animation.Animator animation) {}
-            @Override public void onAnimationRepeat(android.animation.Animator animation) {}
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                if (toTransparency == 0f) {
-                    transitionPanel.setVisibility(View.GONE);
-                }
-                if (finished == null) {
-                    return;
-                }
-                finished.run();
-            }
+        new Handler(Looper.getMainLooper()).post(() -> {
+            transitionPanel.setVisibility(View.VISIBLE);
+            transitionPanel.animate()
+                    .alpha(toTransparency)
+                    .setDuration(milliseconds)
+                    .withEndAction(finished)
+                    .start();
         });
-
-        animator.start();
     }
 }

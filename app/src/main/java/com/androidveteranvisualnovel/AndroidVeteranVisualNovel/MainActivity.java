@@ -15,6 +15,7 @@ import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.Star
 
 public class MainActivity extends AppCompatActivity {
     public static final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+    private MenuFragmentManager menuFragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         StoryDatabase.getInstance(getApplicationContext());
 
         // layout initialization here
-        MenuFragmentManager menuFragmentManager = new MenuFragmentManager(getSupportFragmentManager(), R.id.frame_container);
+        menuFragmentManager = new MenuFragmentManager(getSupportFragmentManager(), R.id.frame_container);
         menuFragmentManager.switchToMenuFragment(StartMenuFragment.newInstance());
     }
 }

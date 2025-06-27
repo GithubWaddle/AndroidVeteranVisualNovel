@@ -1,10 +1,11 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.StoryScenePlayer;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.VisualNovelInterface;
 
 public class SetVariable extends StorySceneEvent {
-    private String name;
-    private Object value;
+    public String name;
+    public Object value;
 
     public SetVariable(String name, Object value) {
         this.name = name;
@@ -12,10 +13,12 @@ public class SetVariable extends StorySceneEvent {
     }
 
     @Override
-    public void execute(VisualNovelInterface visualNovel, Runnable finished) {
-        super.execute(visualNovel, finished);
-
-        visualNovel.setVariable(name, value);
+    public void execute(VisualNovelInterface visualNovel, StoryScenePlayer storyScenePlayer, Runnable finished) {
+        super.execute(visualNovel, storyScenePlayer, finished);
+        storyScenePlayer.saveData.storyState.put(
+                name,
+                value
+        );
         finished.run();
     }
 }

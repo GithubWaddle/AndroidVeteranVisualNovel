@@ -1,9 +1,6 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event;
 
-import android.os.Handler;
-import android.os.Looper;
-
-import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.MainActivity;
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.StoryScenePlayer;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.VisualNovelInterface;
 
 import java.util.concurrent.Executors;
@@ -18,8 +15,8 @@ public class Wait extends StorySceneEvent {
     }
 
     @Override
-    public void execute(VisualNovelInterface visualNovel, Runnable finished) {
-        super.execute(visualNovel, finished);
+    public void execute(VisualNovelInterface visualNovel, StoryScenePlayer storyScenePlayer, Runnable finished) {
+        super.execute(visualNovel, storyScenePlayer, finished);
 
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.schedule(finished, milliseconds, TimeUnit.MILLISECONDS);

@@ -1,6 +1,8 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play;
 
 import android.graphics.Bitmap;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 
 import android.animation.ObjectAnimator;
@@ -28,23 +30,14 @@ public class PlayBackground {
             int milliseconds,
             final Runnable finished
     ) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(backgroundImage, View.ALPHA, backgroundImage.getAlpha(), toTransparency);
-        animator.setDuration(milliseconds);
-
-        if (finished != null) {
-            animator.addListener(new android.animation.Animator.AnimatorListener() {
-                @Override public void onAnimationStart(android.animation.Animator animation) {}
-                @Override public void onAnimationCancel(android.animation.Animator animation) {}
-                @Override public void onAnimationRepeat(android.animation.Animator animation) {}
-
-                @Override
-                public void onAnimationEnd(android.animation.Animator animation) {
-                    finished.run();
-                }
-            });
-        }
-
-        animator.start();
+        new Handler(Looper.getMainLooper()).post(() -> {
+            backgroundImage.setVisibility(View.VISIBLE);
+            backgroundImage.animate()
+                    .alpha(toTransparency)
+                    .setDuration(milliseconds)
+                    .withEndAction(finished)
+                    .start();
+        });
     }
 }
 

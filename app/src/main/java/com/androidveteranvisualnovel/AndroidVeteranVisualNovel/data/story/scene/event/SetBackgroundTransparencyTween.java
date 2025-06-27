@@ -1,10 +1,11 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.scene.event;
 
+import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.StoryScenePlayer;
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.menufragment.play.VisualNovelInterface;
 
 public class SetBackgroundTransparencyTween extends StorySceneEvent {
-    private float transparency;
-    private int milliseconds;
+    public float transparency;
+    public int milliseconds;
 
     public SetBackgroundTransparencyTween(float transparency, int milliseconds) {
         this.transparency = transparency;
@@ -12,8 +13,8 @@ public class SetBackgroundTransparencyTween extends StorySceneEvent {
     }
 
     @Override
-    public void execute(VisualNovelInterface visualNovel, Runnable finished) {
-        super.execute(visualNovel, finished);
+    public void execute(VisualNovelInterface visualNovel, StoryScenePlayer storyScenePlayer, Runnable finished) {
+        super.execute(visualNovel, storyScenePlayer, finished);
 
         visualNovel.setBackgroundTransparencyTween(
                 transparency,

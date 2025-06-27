@@ -1,6 +1,9 @@
 package com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.save;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,6 +25,10 @@ import java.util.Iterator;
 
 public class SaveDataFormatConverter {
 
+    private static File getThumbnailFile(String jsonFilePath) {
+        return new File(jsonFilePath.replace(".json", "_thumb.png"));
+    }
+
     public static void toFile(SaveData saveDataObject, String filePath, Context applicationContext) {
         JSONObject jsonObject = new JSONObject();
         try {
@@ -35,6 +42,14 @@ public class SaveDataFormatConverter {
                  OutputStreamWriter writer = new OutputStreamWriter(outputStream)) {
                 writer.write(jsonObject.toString());
             }
+
+            if (saveDataObject.thumbnail != null) {
+                File thumbnailFile = getThumbnailFile(filePath);
+                try (FileOutputStream out = new FileOutputStream(thumbnailFile)) {
+                    saveDataObject.thumbnail.compress(Bitmap.CompressFormat.PNG, 100, out);
+                }
+            }
+
         } catch (JSONException | IOException e) {
             throw new RuntimeException("Failed to save data at: " + filePath, e);
         }
@@ -65,6 +80,13 @@ public class SaveDataFormatConverter {
             }
             saveData.storyState = storyStateMap;
 
+            File thumbnailFile = getThumbnailFile(saveFile.getAbsolutePath());
+            if (thumbnailFile.exists()) {
+                Bitmap thumbnail = BitmapFactory.decodeFile(thumbnailFile.getAbsolutePath());
+                saveData.thumbnail = thumbnail;
+            }
+
+            Log.println(Log.DEBUG, "SOMETHING", "Nice.");
         } catch (JSONException | IOException e) {
             throw new RuntimeException("Failed to parse save data at: " + saveFile.getAbsolutePath(), e);
         }
@@ -72,4 +94,3 @@ public class SaveDataFormatConverter {
         return saveData;
     }
 }
-

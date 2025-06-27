@@ -1,0 +1,7 @@
+{
+  "id": "edgar",
+  "name": "Edgar",
+  "storyFolderRelativeExpressionImagePaths": {
+    "neutral": "actors/edgar/expressions/neutral.png"
+  }
+}

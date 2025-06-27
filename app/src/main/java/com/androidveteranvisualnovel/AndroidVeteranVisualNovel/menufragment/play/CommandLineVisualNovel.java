@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.androidveteranvisualnovel.AndroidVeteranVisualNovel.data.story.actor.StoryActor;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -37,8 +38,8 @@ public class CommandLineVisualNovel implements VisualNovelInterface {
     }
 
     @Override
-    public void setBackground(String path) {
-        print(String.format("background is %s", path));
+    public void setBackground(String storyPath) {
+        print(String.format("background is %s", storyPath));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CommandLineVisualNovel implements VisualNovelInterface {
     }
 
     @Override
-    public void addActorSprite(StoryActor actor, String expression) {
+    public void addActorSprite(StoryActor actor, String expression, String position) {
         print(String.format("%s is here now. They have a %s expression.", actor.name, expression));
     }
 
@@ -167,7 +168,12 @@ public class CommandLineVisualNovel implements VisualNovelInterface {
     }
 
     @Override
-    public void setVariable(String name, Object value) {
-        print(String.format(Locale.US, "Variable `%s` is set to value `%s`", name, value));
+    public void askChoice(List<String> choices, Runnable finished) {
+
+    }
+
+    @Override
+    public String getPickedChoice() {
+        return "";
     }
 }
